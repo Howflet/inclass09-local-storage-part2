@@ -1,0 +1,157 @@
+# T2 after creating Moon/Lantern + Echo, Echo, Beacon  (2026-10-09 15:47:45 EDT; read-only query of a copy of the app DB pulled with adb run-as)
+     k        v
+------------  -
+user_version  2
+id   name            created_at          card_count
+--  -------  --------------------------  ----------
+ 1  Moon     2026-10-09T15:45:17.108784           2
+ 2  Lantern  2026-10-09T15:45:27.346686           1
+id  title     suit    notes  image_null          image_ref           folder_id
+--  ------  --------  -----  ----------  --------------------------  ---------
+ 1  Echo    Hearts                    0  assets/cards/card_back.png          1
+ 2  Echo    Spades                    1                                      1
+ 3  Beacon  Diamonds                  1                                      2
+   t      _id  name   age
+--------  ---  -----  ---
+my_table    2  River   35
+my_table    3  Acorn    0
+my_table    4  Oak    130
+ name    seq
+-------  ---
+cards      3
+folders    2
+
+# T3 after Save on card 1 and Cancel on card 2  (2026-10-09 15:48:36 EDT; read-only query of a copy of the app DB pulled with adb run-as)
+     k        v
+------------  -
+user_version  2
+id   name            created_at          card_count
+--  -------  --------------------------  ----------
+ 1  Moon     2026-10-09T15:45:17.108784           2
+ 2  Lantern  2026-10-09T15:45:27.346686           1
+id     title        suit          notes        image_null          image_ref           folder_id
+--  ------------  --------  -----------------  ----------  --------------------------  ---------
+ 1  Echo revised  Hearts    Moonlit test note           0  assets/cards/card_back.png          1
+ 2  Echo          Spades                                1                                      1
+ 3  Beacon        Diamonds                              1                                      2
+   t      _id  name   age
+--------  ---  -----  ---
+my_table    2  River   35
+my_table    3  Acorn    0
+my_table    4  Oak    130
+ name    seq
+-------  ---
+cards      3
+folders    2
+
+# T4 BEFORE force-stop  (2026-10-09 15:48:43 EDT; read-only query of a copy of the app DB pulled with adb run-as)
+     k        v
+------------  -
+user_version  2
+id   name            created_at          card_count
+--  -------  --------------------------  ----------
+ 1  Moon     2026-10-09T15:45:17.108784           2
+ 2  Lantern  2026-10-09T15:45:27.346686           1
+id     title        suit          notes        image_null          image_ref           folder_id
+--  ------------  --------  -----------------  ----------  --------------------------  ---------
+ 1  Echo revised  Hearts    Moonlit test note           0  assets/cards/card_back.png          1
+ 2  Echo          Spades                                1                                      1
+ 3  Beacon        Diamonds                              1                                      2
+   t      _id  name   age
+--------  ---  -----  ---
+my_table    2  River   35
+my_table    3  Acorn    0
+my_table    4  Oak    130
+ name    seq
+-------  ---
+cards      3
+folders    2
+
+# T4 AFTER force-stop + relaunch  (2026-10-09 15:49:25 EDT; read-only query of a copy of the app DB pulled with adb run-as)
+     k        v
+------------  -
+user_version  2
+id   name            created_at          card_count
+--  -------  --------------------------  ----------
+ 1  Moon     2026-10-09T15:45:17.108784           2
+ 2  Lantern  2026-10-09T15:45:27.346686           1
+id     title        suit          notes        image_null          image_ref           folder_id
+--  ------------  --------  -----------------  ----------  --------------------------  ---------
+ 1  Echo revised  Hearts    Moonlit test note           0  assets/cards/card_back.png          1
+ 2  Echo          Spades                                1                                      1
+ 3  Beacon        Diamonds                              1                                      2
+   t      _id  name   age
+--------  ---  -----  ---
+my_table    2  River   35
+my_table    3  Acorn    0
+my_table    4  Oak    130
+ name    seq
+-------  ---
+cards      3
+folders    2
+
+# T5 after card 2 delete + Moon (folder 1) cascade delete  (2026-10-09 15:50:42 EDT; read-only query of a copy of the app DB pulled with adb run-as)
+     k        v
+------------  -
+user_version  2
+id   name            created_at          card_count
+--  -------  --------------------------  ----------
+ 2  Lantern  2026-10-09T15:45:27.346686           1
+id  title     suit    notes  image_null  image_ref  folder_id
+--  ------  --------  -----  ----------  ---------  ---------
+ 3  Beacon  Diamonds                  1                     2
+   t      _id  name   age
+--------  ---  -----  ---
+my_table    2  River   35
+my_table    3  Acorn    0
+my_table    4  Oak    130
+ name    seq
+-------  ---
+cards      3
+folders    2
+
+# T5 orphan check
+cards_referencing_folder_1
+0
+cards_without_parent
+0
+# T6 after invalid attempts (whitespace title, blank folder, duplicate Lantern)  (2026-10-09 15:52:17 EDT; read-only query of a copy of the app DB pulled with adb run-as)
+     k        v
+------------  -
+user_version  2
+id   name            created_at          card_count
+--  -------  --------------------------  ----------
+ 2  Lantern  2026-10-09T15:45:27.346686           1
+id  title     suit    notes  image_null  image_ref  folder_id
+--  ------  --------  -----  ----------  ---------  ---------
+ 3  Beacon  Diamonds                  1                     2
+   t      _id  name   age
+--------  ---  -----  ---
+my_table    2  River   35
+my_table    3  Acorn    0
+my_table    4  Oak    130
+ name    seq
+-------  ---
+cards      3
+folders    2
+
+# T6 after duplicate Lantern attempt  (2026-10-09 15:52:37 EDT; read-only query of a copy of the app DB pulled with adb run-as)
+     k        v
+------------  -
+user_version  2
+id   name            created_at          card_count
+--  -------  --------------------------  ----------
+ 2  Lantern  2026-10-09T15:45:27.346686           1
+id  title     suit    notes  image_null  image_ref  folder_id
+--  ------  --------  -----  ----------  ---------  ---------
+ 3  Beacon  Diamonds                  1                     2
+   t      _id  name   age
+--------  ---  -----  ---
+my_table    2  River   35
+my_table    3  Acorn    0
+my_table    4  Oak    130
+ name    seq
+-------  ---
+cards      3
+folders    2
+

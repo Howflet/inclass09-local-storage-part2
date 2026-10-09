@@ -1,0 +1,36 @@
+# T1b - target: Android emulator Espresso_Pixel, disposable secondary user profile 'Disposable09' (user 10), fresh install of the RELEASE APK (no prior app data)
+# Captured 2026-10-09 16:08 EDT from the app's Diagnostics screen (logcat)
+DB DIAGNOSTICS
+{
+  "path": "/data/user/10/edu.gsu.kfletcher.local_storage_lab/app_flutter/MyDatabase.db",
+  "user_version": 2,
+  "foreign_keys": 1,
+  "tables": [
+    "cards",
+    "folders",
+    "my_table"
+  ],
+  "foreign_key_list(cards)": [
+    {
+      "id": 0,
+      "seq": 0,
+      "table": "folders",
+      "from": "folder_id",
+      "to": "id",
+      "on_update": "NO ACTION",
+      "on_delete": "CASCADE",
+      "match": "NONE"
+    }
+  ],
+  "index_list(cards)": [
+    {
+      "seq": 0,
+      "name": "idx_cards_folder_id",
+      "unique": 0,
+      "origin": "c",
+      "partial": 0
+    }
+  ],
+  "part_one_rows": [],
+  "part_one_count": 0
+}
