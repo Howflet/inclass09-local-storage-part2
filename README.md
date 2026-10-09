@@ -1,6 +1,6 @@
 # In-Class 09 / Local Storage Part II: Card Catalogue
 
-**Student / course / pathway:** Kevon Fletcher / Mobile Application Development / **Undergraduate** (prompts 1-3 + AI Lab U1, U2)
+**Student / course / pathway:** Howard Fletcher / Mobile Application Development / **Undergraduate** (prompts 1-3 + AI Lab U1, U2)
 
 **Flutter / Dart / target:** Flutter 3.47.2 (stable), Dart 3.13.2 on macOS (Apple Silicon). Target: Android emulator `Espresso_Pixel` (sdk gphone64 arm64, `emulator-5554`), the same emulator and installation used for Part I (In-Class 08).
 
@@ -65,7 +65,7 @@ Final state of the upgraded install after T6: Part I `my_table` 2/River/35, 3/Ac
 
 ## Release APK smoke test
 
-- **Build:** `flutter build apk --release` → `✓ Built build/app/outputs/flutter-apk/app-release.apk (51.5MB)`. Copied as `Activity09_Fletcher_Kevon.apk`. SHA-256 `0f52fd369f34047b1371cc66a8a85f5df982642d804d89cc6fe48c502c9fae76`.
+- **Build:** `flutter build apk --release` → `✓ Built build/app/outputs/flutter-apk/app-release.apk (51.5MB)`. Copied as `Activity09_Fletcher_Howard.apk`. SHA-256 `0f52fd369f34047b1371cc66a8a85f5df982642d804d89cc6fe48c502c9fae76`.
 - **Target:** disposable user profile `Disposable09` (user 10) on `Espresso_Pixel`, installed with `adb install --user 10`. The Part I / upgraded install in user 0 was **not** uninstalled or replaced by this APK.
 - **Observed:** fresh DB at version 2 (see T1b). Created folder Fresh (ID 1) → empty state shown. Added card "Smoke" (Clubs, no image) → ID 1 with ♣ placeholder. Edited it to "Smoke edited" → "Updated card ID 1: 1 row affected." Added "Temp" (Hearts) → ID 2. Deleted ID 2 → "Deleted card ID 2: 1 row affected." Ran `am force-stop --user 10`, then relaunched: PID 21423 → 24708. Home showed "1 folder(s), 1 card(s)" and Fresh still held ID 1 "Smoke edited" Clubs. Evidence: `release_smoke_before_restart.png`, `release_smoke_after_restart.png`. **Pass.**
 
@@ -92,8 +92,8 @@ Final state of the upgraded install after T6: Part I `my_table` 2/River/35, 3/Ac
 | Models, repository & CRUD (25) | `lib/models/*.dart`, `lib/catalogue_repository.dart`, `lib/screens/*.dart`. Rows T2, T3, T5, T6 |
 | Image handling & usability (10) | `lib/widgets/card_image.dart`, `assets/cards/card_back.png`. `T2_cards.png` (asset), `T6_beacon_fallback.png`, `T6_broken_ref_preview.png`, `T1b_fresh_empty_folder.png` (empty state), confirmation dialogs in T5 |
 | Testing & evidence (20) | Matrix above. `evidence/T1_before.png`, `T2_cards.png`, `T4_after.png`, `analysis_output.txt`, `query_log.txt`. Release smoke test section. Known limitations |
-| Critical thinking & AI Lab (15) | Separate `Fletcher_Kevon_CriticalThinking.docx` (uploaded to iCollege, not in this repo) |
-| README & delivery (5) | This README, `pubspec.yaml`, `pubspec.lock`. Repo URL in `github_link.txt`. `Activity09_Fletcher_Kevon.apk` uploaded separately |
+| Critical thinking & AI Lab (15) | Separate `Fletcher_Howard_CriticalThinking.docx` (uploaded to iCollege, not in this repo) |
+| README & delivery (5) | This README, `pubspec.yaml`, `pubspec.lock`. Repo URL in `github_link.txt`. `Activity09_Fletcher_Howard.apk` uploaded separately |
 
 ## Attribution
 
